@@ -1,4 +1,4 @@
-package exemplos_adilson;
+package twitter;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
-public class ExemploListar {
+public class ExemploListarTweet {
 
 	public static void main(String[] args) throws Exception {
 		Client client = ClientBuilder.newClient();

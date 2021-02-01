@@ -1,4 +1,4 @@
-package clientews;
+package exemplos_adilson;
 
 public final class Cliente {
 

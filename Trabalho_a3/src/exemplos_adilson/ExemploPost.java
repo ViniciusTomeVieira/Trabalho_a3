@@ -21,8 +21,8 @@ public class ExemploPost {
 		Cliente c = new Cliente();
 		c.setNome("AAB");
 
-		WebTarget webTarget = client.target("http://localhost:8080/ws");
-		Response response = webTarget.path("cliente").request().post(Entity.entity(c, MediaType.APPLICATION_JSON_TYPE));
+		WebTarget webTarget = client.target("https://api.apitore.com/api/23/twitter");
+		Response response = webTarget.path("mytimeline").request().post(Entity.entity(c, MediaType.APPLICATION_JSON_TYPE));
 		System.out.println(response.getStatus()); // 201 - ok 401 - nao autorizado 500 - outros erros, por exemplo, nome repetido
 		System.out.println(response.getStatusInfo());
 	}
