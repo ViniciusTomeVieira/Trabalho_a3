@@ -1,4 +1,4 @@
-package clientews;
+package exemplos_adilson;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
