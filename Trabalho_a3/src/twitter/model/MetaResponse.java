@@ -2,9 +2,9 @@ package twitter.model;
 
 public class MetaResponse {
     private String sent;
-    private String summary;
+    private Summary summary;
 
-    public MetaResponse(String sent, String summary) {
+    public MetaResponse(String sent, Summary summary) {
         this.sent = sent;
         this.summary = summary;
     }
@@ -20,11 +20,11 @@ public class MetaResponse {
         this.sent = sent;
     }
 
-    public String getSummary() {
+    public Summary getSummary() {
         return summary;
     }
 
-    public void setSummary(String summary) {
+    public void setSummary(Summary summary) {
         this.summary = summary;
     }
 }
