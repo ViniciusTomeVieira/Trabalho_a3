@@ -9,6 +9,7 @@ import twitter.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import twitter.model.Tweet;
 
 public class Gerenciador {
     private static Gerenciador instance;
@@ -40,7 +41,6 @@ public class Gerenciador {
             try {
 
                 usuarios = usuarioGET.getUsuarioByUsername(username);
-
                 for (Observer obs : observadores) {
                     obs.AchouUsuario(true);
                 }
@@ -48,7 +48,8 @@ public class Gerenciador {
                 for (Observer obs : observadores) {
                     obs.AchouUsuario(false);
                 }
-                if (usuarios != null) {
+            }
+                if (usuarios != null) {                
                     for (Usuario u : usuarios.getData()) {
                         try {
                             tweets = tweetsGET.getTweetByUsuarioID(u.getId(), qntTweets);
@@ -61,9 +62,7 @@ public class Gerenciador {
                             }
                         }
                     }
-                }
-
-            }
+                }           
         } else {
             for (Observer obs : observadores) {
                 obs.qntTweetsInvalido();

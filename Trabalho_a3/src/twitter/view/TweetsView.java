@@ -7,6 +7,7 @@ package twitter.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,6 +18,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import twitter.controller.Gerenciador;
 
 /**
@@ -26,11 +29,13 @@ import twitter.controller.Gerenciador;
 public class TweetsView extends JFrame implements ActionListener {
     
     //JLabel
-    private JLabel jlImage, jlUser, jlAmount, jlUserSample, jlAmountSample;
+    private JLabel jlName, jlId, jlUsername, jlDate;
     //JTextField
     private JTextField jtfUser, jtfAmount;
     //JButton
     private JButton jbSearch;
+    //JTable
+    private JTable jtTweets;
     //Layout
     private GridBagConstraints constraints;
     private GridBagLayout layout;
@@ -54,26 +59,64 @@ public class TweetsView extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    class TabuleiroTableModel extends AbstractTableModel {
+
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public int getColumnCount() {
+            return 1;
+        }
+
+        @Override
+        public int getRowCount() {
+            return gerenciador.getTweets().getData().size();
+        }
+
+        @Override
+        public String getValueAt(int row, int col) {
+            try {
+                return gerenciador.getTweets().getData().get(row).getText();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+                return null;
+            }
+        }
+
+    }
+    class TabuleiroRenderer extends DefaultTableCellRenderer {
+
+        private static final long serialVersionUID = 1L;
+
+        public Component getTableCellRendererComponent(JTable table,
+                String value, boolean isSelected, boolean hasFocus, int row,
+                int column) {
+
+            setText("xesq");
+
+            return this;
+        }
+
+    }
     //Inicia os componentes da tela e os ajusta corretamente
     private void initComponents(){
+  
         //JLabels
-        jlImage = new JLabel("TwitterJersey AV");
-        jlUser = new JLabel("Usuario: ");
-        jlAmount = new JLabel("Quantidade: ");
-        jlUserSample = new JLabel("Ex.: DolarBipolar");
-        jlAmountSample = new JLabel("Entre 5 e 100");
+        jlId = new JLabel(gerenciador.getUsuarios().getData().get(0).getId());
+        jlName = new JLabel(gerenciador.getUsuarios().getData().get(0).getName());
+        jlUsername = new JLabel(gerenciador.getUsuarios().getData().get(0).getUsername());
         
         ImageIcon iconLogo = new ImageIcon("Images/twitter.png");
         Image newImage = iconLogo.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         iconLogo.setImage(newImage);
-        jlImage.setIcon(iconLogo);
+        //jlImage.setIcon(iconLogo);
         
         //JLabels/Layout
-        jlImage.setForeground(Color.white);
-        jlUser.setForeground(Color.white);
-        jlAmount.setForeground(Color.white);
-        jlUserSample.setForeground(Color.white);
-        jlAmountSample.setForeground(Color.white);
+        //jlImage.setForeground(Color.white);
+        //jlUser.setForeground(Color.white);
+        //jlAmount.setForeground(Color.white);
+        //jlUserSample.setForeground(Color.white);
         
         //JTextFields
         jtfUser = new JTextField();
@@ -101,40 +144,39 @@ public class TweetsView extends JFrame implements ActionListener {
         jpPrincipal.setLayout(layout);
         jpPrincipal.setBackground(new Color(0, 172, 238));
         
+        //JTable
+        jtTweets = new JTable();
+        jtTweets.setModel(new TabuleiroTableModel());
+        for (int x = 0; x < jtTweets.getColumnModel().getColumnCount(); x++) {
+            jtTweets.getColumnModel().getColumn(x).setWidth(200);
+            jtTweets.getColumnModel().getColumn(x).setMinWidth(100);
+            jtTweets.getColumnModel().getColumn(x).setMaxWidth(100);
+        }
+        jtTweets.setRowHeight(100);
+        jtTweets.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jtTweets.setShowGrid(false);
+        jtTweets.setGridColor(Color.red);
+        jtTweets.setIntercellSpacing(new Dimension(0, 0));
+        jtTweets.setDefaultRenderer(Object.class, new TabuleiroRenderer());
+        
         //Adiciona os componentes no painel
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.insets = new Insets(0, 0, 20, 0);
-        jpPrincipal.add(jlImage,constraints);
+        jpPrincipal.add(jlName,constraints);
         
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.insets = new Insets(0, 0, 5, 5);
-        jpPrincipal.add(jlUser,constraints);
-        
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        jpPrincipal.add(jtfUser,constraints);
-        
-        constraints.gridx = 2;
-        constraints.gridy = 1;
-        jpPrincipal.add(jlUserSample,constraints);
+        jpPrincipal.add(jlUsername,constraints);
         
         constraints.gridx = 0;
         constraints.gridy = 2;
-        jpPrincipal.add(jlAmount,constraints);
-        
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        jpPrincipal.add(jtfAmount,constraints);
-        
-        constraints.gridx = 2;
-        constraints.gridy = 2;
-        jpPrincipal.add(jlAmountSample,constraints);
+        jpPrincipal.add(jlUsername,constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 3;
-        jpPrincipal.add(jbSearch,constraints);
+        jpPrincipal.add(jtTweets,constraints);
         
         setLayout(new BorderLayout());
         add(jpPrincipal,BorderLayout.CENTER);     
