@@ -13,10 +13,20 @@ import java.util.List;
  */
 public class Tweets {
     private List<Tweet> data;
+    private Meta meta;
 
     public Tweets() {
     }
 
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Meta meta) {
+        this.meta = meta;
+    }
+
+    
     public Tweets(List<Tweet> data) {
         this.data = data;
     }

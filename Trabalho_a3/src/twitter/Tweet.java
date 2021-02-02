@@ -4,25 +4,25 @@ import exemplos_adilson.*;
 
 public final class Tweet {
 
-	private int id;
+	private String id;
 	private String text;
 	
 	public Tweet() {
 		
 	}
 	
-	public Tweet(int id, String nome) {
+	public Tweet(String id, String nome) {
 		super();
 		this.id = id;
 		this.text = nome;
 	}
           
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
