@@ -1,27 +1,28 @@
 package twitter.controller;
 
+import twitter.apiAccess.RulesPOST;
 import twitter.apiAccess.TweetsGET;
 import twitter.apiAccess.UsuarioGET;
-import twitter.model.Tweets;
-import twitter.model.Usuario;
-import twitter.model.Usuarios;
+import twitter.model.*;
 import twitter.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
-import twitter.model.Tweet;
 
 public class Gerenciador {
     private static Gerenciador instance;
     private List<Observer> observadores = new ArrayList<>();
     private Usuarios usuarios;
     private Tweets tweets;
+    private RulesResponse rulesResponse;
     private UsuarioGET usuarioGET;
     private TweetsGET tweetsGET;
+    private RulesPOST rulesPOST;
 
     private Gerenciador() {
         usuarioGET = new UsuarioGET();
         tweetsGET = new TweetsGET();
+        rulesPOST = new RulesPOST();
     }
 
     //Singleton
@@ -66,6 +67,21 @@ public class Gerenciador {
         } else {
             for (Observer obs : observadores) {
                 obs.qntTweetsInvalido();
+            }
+        }
+    }
+
+    public void criarRule(String value, String tag){
+        Rules rules = new Rules();
+        rules.getAdd().add(new Rule(value, tag));
+        try {
+            rulesResponse = rulesPOST.setRules(rules);
+            for (Observer obs : observadores) {
+                obs.regraAdicionada(true);
+            }
+        } catch (Exception e) {
+            for (Observer obs : observadores) {
+                obs.regraAdicionada(false);
             }
         }
     }

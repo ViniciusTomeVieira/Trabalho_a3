@@ -7,4 +7,6 @@ public interface Observer {
     void AchouUsuario(boolean b);
 
     void AchouTweets(boolean b);
+
+    void regraAdicionada(boolean b);
 }
