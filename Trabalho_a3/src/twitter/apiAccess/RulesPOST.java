@@ -29,7 +29,7 @@ public class RulesPOST {
 
         Response response = webTarget.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN).post(Entity.entity(rule, MediaType.APPLICATION_JSON_TYPE));
         String res = response.readEntity(String.class);
-        if(response.getStatus() ==200) {
+        if(response.getStatus() == 200) {
 
             RulesResponse rulesResponse = mapper.readValue(res, RulesResponse.class);
             return rulesResponse;

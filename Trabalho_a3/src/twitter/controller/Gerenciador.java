@@ -94,4 +94,13 @@ public class Gerenciador {
         return tweets;
     }
 
+    public RulesResponse getRulesResponse() {
+        return rulesResponse;
+    }
+
+    public void setRulesResponse(RulesResponse rulesResponse) {
+        this.rulesResponse = rulesResponse;
+    }
+    
+
 }

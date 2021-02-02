@@ -25,14 +25,14 @@ import twitter.observer.Observer;
  * @version 1.0
  * Classe resposável pela tela inicial do sistema
  */
-public class TwitterView extends JFrame implements Observer, ActionListener {
+public class TwitterRuleView extends JFrame implements Observer, ActionListener {
     
     //JLabel
-    private JLabel jlImage, jlUser, jlAmount, jlUserSample, jlAmountSample, jlOr;
+    private JLabel jlImage, jlValue, jlTag, jlValueSample, jlTagSample;
     //JTextField
-    private JTextField jtfUser, jtfAmount;
+    private JTextField jtfValue, jtfTag;
     //JButton
-    private JButton jbSearch, jbAddRule;
+    private JButton jbSend, jbBack;
     //Layout
     private GridBagConstraints constraints;
     private GridBagLayout layout;
@@ -40,7 +40,7 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
     //Referencia do Gerenciador
     private Gerenciador gerenciador;
     
-    public TwitterView(){
+    public TwitterRuleView(){
         
         //Chama o singleton do Gerenciador.java
         gerenciador = Gerenciador.Gerenciador();
@@ -50,30 +50,20 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
         initComponents();
         
         //Configura a view
-        setTitle("TwitterJersey AV");
+        setTitle("TwitterRules");
         setBounds(200, 200, 400, 350);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
     }
-    //Inicia a tela do sistema
-    public static void main(String[] args) {
-       try {
-            TwitterView view = new TwitterView();
-            view.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     //Inicia os componentes da tela e os ajusta corretamente
     private void initComponents(){
         //JLabels
         jlImage = new JLabel("TwitterJersey AV");
-        jlUser = new JLabel("Usuario: ");
-        jlAmount = new JLabel("Quantidade: ");
-        jlUserSample = new JLabel("Ex.: DolarBipolar");
-        jlAmountSample = new JLabel("Entre 5 e 100");
-        jlOr = new JLabel("ou");
+        jlValue = new JLabel("Regra: ");
+        jlTag= new JLabel("Tag: ");
+        jlValueSample = new JLabel("Ex.: Memes");
+        jlTagSample = new JLabel("Cachorro");
         
         ImageIcon iconLogo = new ImageIcon("Images/twitter.png");
         Image newImage = iconLogo.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -82,35 +72,34 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
         
         //JLabels/Layout
         jlImage.setForeground(Color.white);
-        jlUser.setForeground(Color.white);
-        jlAmount.setForeground(Color.white);
-        jlUserSample.setForeground(Color.white);
-        jlAmountSample.setForeground(Color.white);
-        jlOr.setForeground(Color.white);
+        jlValue.setForeground(Color.white);
+        jlTag.setForeground(Color.white);
+        jlValueSample.setForeground(Color.white);
+        jlTagSample.setForeground(Color.white);
         
         //JTextFields
-        jtfUser = new JTextField();
-        jtfAmount = new JTextField();
+        jtfValue = new JTextField();
+        jtfTag = new JTextField();
         
         //JTextFields/Layout
-        jtfAmount.setPreferredSize( new Dimension( 200, 24 ) ); 
-        jtfUser.setPreferredSize( new Dimension( 200, 24 ) ); 
+        jtfValue.setPreferredSize( new Dimension( 200, 24 ) ); 
+        jtfTag.setPreferredSize( new Dimension( 200, 24 ) ); 
         
         //JButtons
-        jbSearch = new JButton();
-        jbSearch.setText("PESQUISAR");
-        jbAddRule = new JButton();
-        jbAddRule.setText("ADICIONAR REGRA");
+        jbSend = new JButton();
+        jbSend.setText("CADASTRAR");
+        jbBack = new JButton();
+        jbBack.setText("VOLTAR");
         
         //JButtons/Layout
-        jbSearch.setBackground(new Color(0,185,255));
-        jbSearch.setForeground(Color.white);
-        jbAddRule.setBackground(new Color(0,185,255));
-        jbAddRule.setForeground(Color.white);
+        jbSend.setBackground(new Color(0,185,255));
+        jbSend.setForeground(Color.white);
+        jbBack.setBackground(new Color(0,185,255));
+        jbBack.setForeground(Color.white);
         
         //JButtons/Acao
-        jbSearch.addActionListener(this);
-        jbAddRule.addActionListener(this);
+        jbSend.addActionListener(this);
+        jbBack.addActionListener(this);
         
         //Inicia os componentes de layout
         constraints = new GridBagConstraints();
@@ -128,40 +117,35 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.insets = new Insets(0, 0, 5, 5);
-        jpPrincipal.add(jlUser,constraints);
+        jpPrincipal.add(jlValue,constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 1;
-        jpPrincipal.add(jtfUser,constraints);
+        jpPrincipal.add(jtfValue,constraints);
         
         constraints.gridx = 2;
         constraints.gridy = 1;
-        jpPrincipal.add(jlUserSample,constraints);
+        jpPrincipal.add(jlValueSample,constraints);
         
         constraints.gridx = 0;
         constraints.gridy = 2;
-        jpPrincipal.add(jlAmount,constraints);
+        jpPrincipal.add(jlTag,constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 2;
-        jpPrincipal.add(jtfAmount,constraints);
+        jpPrincipal.add(jtfTag,constraints);
         
         constraints.gridx = 2;
         constraints.gridy = 2;
-        jpPrincipal.add(jlAmountSample,constraints);
+        jpPrincipal.add(jlTagSample,constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 3;
-        jpPrincipal.add(jbSearch,constraints);
-        
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        jpPrincipal.add(jlOr,constraints);
+        jpPrincipal.add(jbSend,constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 5;
-        constraints.insets = new Insets(5, 0, 5, 5);
-        jpPrincipal.add(jbAddRule,constraints);
+        jpPrincipal.add(jbBack,constraints);
         
         setLayout(new BorderLayout());
         add(jpPrincipal,BorderLayout.CENTER);     
@@ -169,12 +153,12 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == jbSearch) {
-            gerenciador.buscarTweetByUsername(jtfUser.getText(), Integer.parseInt(jtfAmount.getText()));
+        if (e.getSource() == jbSend) {
+            gerenciador.criarRule(jtfValue.getText(),jtfTag.getText());
         }
-        if (e.getSource() == jbAddRule) {
+        if (e.getSource() == jbBack) {
                 try {
-                    TwitterRuleView view = new TwitterRuleView();
+                    TwitterView view = new TwitterView();
                     view.setVisible(true);
                     dispose();
                 } catch (Exception ex) {
@@ -210,5 +194,17 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
 
     @Override
     public void regraAdicionada(boolean b) {
+        if (b) {
+            JOptionPane.showMessageDialog(rootPane, "Regra cadastrada com sucesso!","Parabéns",JOptionPane.INFORMATION_MESSAGE);
+            try {
+                TweetsRulesView view = new TweetsRulesView("Rules");
+                view.setVisible(true);
+                dispose();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Valores inválidos, verifique os campos requeridos","Aviso",JOptionPane.WARNING_MESSAGE);
+        }
     }
 }

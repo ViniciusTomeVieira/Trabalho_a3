@@ -1,11 +1,13 @@
 package twitter.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rules {
     List<Rule> add;
 
     public Rules() {
+        add = new ArrayList<>();
     }
 
     public Rules(List<Rule> add) {

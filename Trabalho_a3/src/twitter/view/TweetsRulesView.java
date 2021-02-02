@@ -27,20 +27,20 @@ import twitter.controller.Gerenciador;
  * @version 1.0
  * Classe resposável pela tela inicial do sistema
  */
-public class TweetsView extends JFrame{
+public class TweetsRulesView extends JFrame{
     
     //JLabel
-    private JLabel jlName, jlId, jlUsername, jlDate;
+    private JLabel jlRules;
     //JTable
-    private JTable jtTweets;
+    private JTable jtRules;
     //Layout
     private GridBagConstraints constraints;
     private GridBagLayout layout;
-    private JPanel jpPrincipal, jpUser, jpTweets;
+    private JPanel jpPrincipal, jpTitle, jpRules;
     //Referencia do Gerenciador
     private Gerenciador gerenciador;
     
-    public TweetsView(String title){
+    public TweetsRulesView(String title){
         
         //Chama o singleton do Gerenciador.java
         gerenciador = Gerenciador.Gerenciador();
@@ -55,7 +55,7 @@ public class TweetsView extends JFrame{
         setResizable(false);
     }
     
-    class TweetsTableModel extends AbstractTableModel {
+    class TweetRulesTableModel extends AbstractTableModel {
 
         private static final long serialVersionUID = 1L;
 
@@ -66,14 +66,15 @@ public class TweetsView extends JFrame{
 
         @Override
         public int getRowCount() {
-            return gerenciador.getTweets().getData().size();
+            return gerenciador.getRulesResponse().getData().size();
         }
 
         @Override
         public String getValueAt(int row, int col) {
             try {
-                String texto = gerenciador.getUsuarios().getData().get(0).getName() + "      " +
-                        gerenciador.getTweets().getData().get(row).getText();
+                String texto = "ID: " + gerenciador.getRulesResponse().getData().get(row).getId() + "    " +
+                               "Value: " + gerenciador.getRulesResponse().getData().get(row).getValue() + "    " +
+                               "Tag: " + gerenciador.getRulesResponse().getData().get(row).getTag();
                 return texto;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.toString());
@@ -82,7 +83,7 @@ public class TweetsView extends JFrame{
         }
 
     }
-    class TweetsRenderer extends DefaultTableCellRenderer {
+    class TweetRulesRenderer extends DefaultTableCellRenderer {
 
         private static final long serialVersionUID = 1L;
 
@@ -101,52 +102,43 @@ public class TweetsView extends JFrame{
     private void initComponents(){
   
         //JLabels
-        jlId = new JLabel("ID: "+gerenciador.getUsuarios().getData().get(0).getId());
-        jlName = new JLabel("Nome: "+gerenciador.getUsuarios().getData().get(0).getName());
-        jlUsername = new JLabel("Username: "+gerenciador.getUsuarios().getData().get(0).getUsername());
-        
-        ImageIcon iconLogo = new ImageIcon("Images/twitter.png");
-        Image newImage = iconLogo.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        iconLogo.setImage(newImage);
-        //jlImage.setIcon(iconLogo);
+        jlRules = new JLabel("Regra cadastrada");
         
         //JLabels/Layout
-        jlId.setForeground(Color.white);
-        jlName.setForeground(Color.white);
-        jlUsername.setForeground(Color.white);
+        jlRules.setForeground(Color.white);
         
         //Inicia os componentes de layout
         constraints = new GridBagConstraints();
         layout = new GridBagLayout();
         jpPrincipal = new JPanel();
-        jpUser = new JPanel();
-        jpTweets = new JPanel();
+        jpTitle = new JPanel();
+        jpRules = new JPanel();
         jpPrincipal.setLayout(new BorderLayout());
-        jpUser.setLayout(layout);
-        jpUser.setBackground(new Color(0, 172, 238));;
-        jpTweets.setLayout(new BorderLayout());
+        jpTitle.setLayout(layout);
+        jpTitle.setBackground(new Color(0, 172, 238));;
+        jpRules.setLayout(new BorderLayout());
         jpPrincipal.setBackground(new Color(0, 172, 238));
         
         
         //JTable
-        jtTweets = new JTable();
-        jtTweets.setModel(new TweetsTableModel());
-        for (int x = 0; x < jtTweets.getColumnModel().getColumnCount(); x++) {
-            jtTweets.getColumnModel().getColumn(x).setWidth(1000);
-            jtTweets.getColumnModel().getColumn(x).setMinWidth(1000);
-            jtTweets.getColumnModel().getColumn(x).setMaxWidth(1000);
+        jtRules = new JTable();
+        jtRules.setModel(new TweetRulesTableModel());
+        for (int x = 0; x < jtRules.getColumnModel().getColumnCount(); x++) {
+            jtRules.getColumnModel().getColumn(x).setWidth(1000);
+            jtRules.getColumnModel().getColumn(x).setMinWidth(1000);
+            jtRules.getColumnModel().getColumn(x).setMaxWidth(1000);
         }
-        jtTweets.setRowHeight(40);
-        jtTweets.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        jtTweets.setShowGrid(true);
-        jtTweets.setGridColor(Color.blue);
-        jtTweets.setIntercellSpacing(new Dimension(0, 5));
-        jtTweets.setDefaultRenderer(Object.class, new TweetsRenderer());
+        jtRules.setRowHeight(40);
+        jtRules.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jtRules.setShowGrid(true);
+        jtRules.setGridColor(Color.blue);
+        jtRules.setIntercellSpacing(new Dimension(0, 5));
+        jtRules.setDefaultRenderer(Object.class, new TweetRulesRenderer());
         
         //jtTweets.setPreferredSize(new Dimension(600, 600));
-        jtTweets.setFillsViewportHeight(true);
+        jtRules.setFillsViewportHeight(true);
         
-        JScrollPane js=new JScrollPane(jtTweets);
+        JScrollPane js=new JScrollPane(jtRules);
         //js.setBounds(10, 0, jtTweets.getBounds().width,  jtTweets.getBounds().height);
         js.setVisible(true);
         
@@ -154,21 +146,12 @@ public class TweetsView extends JFrame{
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.insets = new Insets(0, 0, 20, 0);
-        jpUser.add(jlName,constraints);
+        jpTitle.add(jlRules,constraints);        
         
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.insets = new Insets(0, 0, 5, 5);
-        jpUser.add(jlUsername,constraints);
+        jpRules.add(js, BorderLayout.CENTER); 
         
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        jpUser.add(jlId,constraints);
-        
-        jpTweets.add(js, BorderLayout.CENTER); 
-        
-        jpPrincipal.add(jpUser, BorderLayout.NORTH);
-        jpPrincipal.add(jpTweets, BorderLayout.CENTER);
+        jpPrincipal.add(jpTitle, BorderLayout.NORTH);
+        jpPrincipal.add(jpRules, BorderLayout.CENTER);
         
         setLayout(new BorderLayout());
         add(jpPrincipal,BorderLayout.CENTER);        
