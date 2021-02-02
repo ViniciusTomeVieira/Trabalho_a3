@@ -1,6 +1,6 @@
-package twitter;
+package twitter.model;
 
-import exemplos_adilson.*;
+
 
 public final class Tweet {
 
