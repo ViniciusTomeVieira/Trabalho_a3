@@ -19,6 +19,8 @@ public class Gerenciador {
     private TweetsGET tweetsGET;
 
     private Gerenciador() {
+        usuarioGET = new UsuarioGET();
+        tweetsGET = new TweetsGET();
     }
 
     //Singleton
@@ -36,7 +38,9 @@ public class Gerenciador {
     public void buscarTweetByUsername(String username, int qntTweets) {
         if (qntTweets >= 5 && qntTweets <= 100) {
             try {
+
                 usuarios = usuarioGET.getUsuarioByUsername(username);
+
                 for (Observer obs : observadores) {
                     obs.AchouUsuario(true);
                 }
@@ -70,7 +74,7 @@ public class Gerenciador {
     public Usuarios getUsuarios() {
         return usuarios;
     }
-    
+
     public Tweets getTweets() {
         return tweets;
     }

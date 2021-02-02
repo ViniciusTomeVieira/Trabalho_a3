@@ -27,14 +27,14 @@ public class UsuarioGET {
     }
 
     public Usuarios getUsuarioByUsername(String username) throws Exception {
-        String accessLInk = "https://api.twitter.com/2/users/by/username/" + username+"?user.fields=created_at";
+        String accessLInk = "https://api.twitter.com/2/users/by/username/"+username+"?user.fields=created_at";
         webTarget = client.target(accessLInk);
 
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);
         if (invocationBuilder.get().getStatus() == 200) {
             String usuarioResponse = invocationBuilder.get().readEntity(String.class);
-            System.out.println(usuarioResponse);
-            return mapper.readValue(usuarioResponse, Usuarios.class);
+            Usuarios usuarios = mapper.readValue(usuarioResponse, Usuarios.class);
+            return usuarios;
         } else {
             throw  new Exception("usuário iválido");
         }

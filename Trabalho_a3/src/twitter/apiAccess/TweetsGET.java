@@ -31,7 +31,8 @@ public class TweetsGET {
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);
         if (invocationBuilder.get().getStatus() == 200) {
             String tweets = invocationBuilder.get().readEntity(String.class);
-            return mapper.readValue(tweets, Tweets.class);
+            Tweets tweet = mapper.readValue(tweets, Tweets.class);
+            return tweet;
         } else throw new Exception("Tweets não encontrados");
     }
 }
