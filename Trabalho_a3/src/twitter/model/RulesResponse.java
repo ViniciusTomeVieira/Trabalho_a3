@@ -3,7 +3,8 @@ package twitter.model;
 import java.util.List;
 
 public class RulesResponse {
-    List<RuleResponse> data;
+    private List<RuleResponse> data;
+    private MetaResponse meta;
 
     public RulesResponse(List<RuleResponse> data) {
         this.data = data;
