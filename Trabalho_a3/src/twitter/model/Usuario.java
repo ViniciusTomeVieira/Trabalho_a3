@@ -60,22 +60,8 @@ public class Usuario {
         this.created_at = created_at;
     }
 
-    public ImageIcon getProfile_image_url() {
-        URL url = null;
-        try {
-            url = new URL(profile_image_url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        BufferedImage c = null;
-        try {
-            c = ImageIO.read(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ImageIcon image = new ImageIcon(c);
-
-        return image;
+    public String getProfile_image_url() {
+        return profile_image_url;
     }
 
     public void setProfile_image_url(String profile_image_url) {
