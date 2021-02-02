@@ -2,6 +2,11 @@ package twitter.model;
 
 import java.util.List;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class RulesResponse {
     private List<RuleResponse> data;
     private MetaResponse meta;
@@ -20,4 +25,14 @@ public class RulesResponse {
     public void setData(List<RuleResponse> data) {
         this.data = data;
     }
+
+    public MetaResponse getMeta() {
+        return meta;
+    }
+
+    public void setMeta(MetaResponse meta) {
+        this.meta = meta;
+    }
+    
+    
 }

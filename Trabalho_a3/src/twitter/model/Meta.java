@@ -6,8 +6,9 @@
 package twitter.model;
 
 /**
- *
- * @author vinny
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
  */
 public class Meta {
     private String oldest_id;

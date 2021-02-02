@@ -1,5 +1,10 @@
 package twitter.model;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class Rule {
     private String value;
     private String tag;

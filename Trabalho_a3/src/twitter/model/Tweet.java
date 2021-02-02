@@ -1,7 +1,11 @@
 package twitter.model;
 
 
-
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public final class Tweet {
 
 	private String id;

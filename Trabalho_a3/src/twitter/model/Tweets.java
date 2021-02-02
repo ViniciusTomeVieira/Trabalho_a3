@@ -8,8 +8,9 @@ package twitter.model;
 import java.util.List;
 
 /**
- *
- * @author vinny
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
  */
 public class Tweets {
     private List<Tweet> data;

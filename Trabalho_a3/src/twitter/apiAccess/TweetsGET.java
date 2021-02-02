@@ -12,6 +12,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class TweetsGET {
     private Client client;
     private WebTarget webTarget;

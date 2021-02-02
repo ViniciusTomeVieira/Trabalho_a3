@@ -3,6 +3,11 @@ package twitter.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class Rules {
     List<Rule> add;
 

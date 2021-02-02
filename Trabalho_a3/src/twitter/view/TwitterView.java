@@ -176,6 +176,7 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
                 try {
                     TwitterRuleView view = new TwitterRuleView();
                     view.setVisible(true);
+                    gerenciador.removeObservador(this);
                     dispose();
                 } catch (Exception ex) {
                     ex.printStackTrace();

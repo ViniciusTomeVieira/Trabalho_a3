@@ -9,6 +9,11 @@ import twitter.observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class Gerenciador {
     private static Gerenciador instance;
     private List<Observer> observadores = new ArrayList<>();
@@ -35,6 +40,10 @@ public class Gerenciador {
 
     public void addObservador(Observer obs) {
         observadores.add(obs);
+    }
+    
+    public void removeObservador(Observer obs){
+        observadores.remove(obs);
     }
 
     public void buscarTweetByUsername(String username, int qntTweets) {

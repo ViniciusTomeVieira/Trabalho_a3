@@ -12,6 +12,11 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * @author Vinícius & Adroan
+ * @version 1.0
+ * Classe resposável pela tela inicial do sistema
+ */
 public class RulesPOST {
     private Client client;
     private WebTarget webTarget;
@@ -29,12 +34,10 @@ public class RulesPOST {
 
         Response response = webTarget.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN).post(Entity.entity(rule, MediaType.APPLICATION_JSON_TYPE));
         String res = response.readEntity(String.class);
-        if(response.getStatus() == 200) {
-
-            RulesResponse rulesResponse = mapper.readValue(res, RulesResponse.class);
+        if(response.getStatus() == 201) {
+            RulesResponse rulesResponse = mapper.readValue(res, RulesResponse.class);         
             return rulesResponse;
         }else throw new Exception("Erro ao adicionar a regra");
-
     }
 
 }

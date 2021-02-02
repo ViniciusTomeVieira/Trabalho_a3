@@ -72,7 +72,7 @@ public class TweetsView extends JFrame{
         @Override
         public String getValueAt(int row, int col) {
             try {
-                String texto = gerenciador.getUsuarios().getData().get(0).getName() + "      " +
+                String texto = "Usuário:  " + gerenciador.getUsuarios().getData().get(0).getName() + "      Tweet:  " +
                         gerenciador.getTweets().getData().get(row).getText();
                 return texto;
             } catch (Exception e) {

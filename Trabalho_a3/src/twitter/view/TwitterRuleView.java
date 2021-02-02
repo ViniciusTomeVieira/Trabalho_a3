@@ -160,6 +160,7 @@ public class TwitterRuleView extends JFrame implements Observer, ActionListener 
                 try {
                     TwitterView view = new TwitterView();
                     view.setVisible(true);
+                    gerenciador.removeObservador(this);
                     dispose();
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -199,7 +200,6 @@ public class TwitterRuleView extends JFrame implements Observer, ActionListener 
             try {
                 TweetsRulesView view = new TweetsRulesView("Rules");
                 view.setVisible(true);
-                dispose();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
