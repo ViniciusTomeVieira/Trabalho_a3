@@ -20,6 +20,7 @@ public class Gerenciador {
 
     private Gerenciador() {
     }
+
     //Singleton
     public static synchronized Gerenciador Gerenciador() {
         if (instance == null) {
@@ -32,16 +33,46 @@ public class Gerenciador {
         observadores.add(obs);
     }
 
-    public void buscarTweetByUsername(String username, int qntTweets) throws Exception {
-        if(qntTweets>=5&&qntTweets<=100){
-            usuarios = usuarioGET.getUsuarioByUsername(username);
-            if(usuarios!=null) {
-                for (Usuario u : usuarios.getData()) {
-                    tweets = tweetsGET.getTweetByUsuarioID(u.getId(), qntTweets);
+    public void buscarTweetByUsername(String username, int qntTweets) {
+        if (qntTweets >= 5 && qntTweets <= 100) {
+            try {
+                usuarios = usuarioGET.getUsuarioByUsername(username);
+                for (Observer obs : observadores) {
+                    obs.AchouUsuario(true);
                 }
+            } catch (Exception e) {
+                for (Observer obs : observadores) {
+                    obs.AchouUsuario(false);
+                }
+                if (usuarios != null) {
+                    for (Usuario u : usuarios.getData()) {
+                        try {
+                            tweets = tweetsGET.getTweetByUsuarioID(u.getId(), qntTweets);
+                            for (Observer obs : observadores) {
+                                obs.AchouTweets(true);
+                            }
+                        } catch (Exception exception) {
+                            for (Observer obs : observadores) {
+                                obs.AchouTweets(false);
+                            }
+                        }
+                    }
+                }
+
             }
-        }else{
-            throw new Exception("Valor inválido");
+        } else {
+            for (Observer obs : observadores) {
+                obs.qntTweetsInvalido();
+            }
         }
     }
+
+    public Usuarios getUsuarios() {
+        return usuarios;
+    }
+    
+    public Tweets getTweets() {
+        return tweets;
+    }
+
 }
