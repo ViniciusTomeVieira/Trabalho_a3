@@ -1,5 +1,9 @@
 package twitter.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Usuario {
     private String id;
     private String name;
@@ -42,8 +46,8 @@ public class Usuario {
         this.username = username;
     }
 
-    public String getCreated_at() {
-        return created_at;
+    public Date getCreated_at() throws ParseException {
+        return new SimpleDateFormat("dd/MM/yyyy").parse(created_at);
     }
 
     public void setCreated_at(String created_at) {
