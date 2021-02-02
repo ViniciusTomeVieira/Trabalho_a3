@@ -27,7 +27,7 @@ public class UsuarioGET {
     }
 
     public Usuarios getUsuarioByUsername(String username) throws Exception {
-        String accessLInk = "https://api.twitter.com/2/users/by/username/"+username+"?user.fields=created_at&profile_image_url";
+        String accessLInk = "https://api.twitter.com/2/users/by/username/"+username+"?user.fields=created_at";
         webTarget = client.target(accessLInk);
 
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);

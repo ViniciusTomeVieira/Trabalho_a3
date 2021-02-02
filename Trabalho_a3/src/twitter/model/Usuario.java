@@ -15,17 +15,17 @@ public class Usuario {
     private String name;
     private String username;
     private String created_at;
-    private String profile_image_url;
+
 
     public Usuario() {
     }
 
-    public Usuario(String id, String name, String username, String created_at, String profile_image_url) {
+    public Usuario(String id, String name, String username, String created_at) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.created_at = created_at;
-        this.profile_image_url = profile_image_url;
+
     }
 
     public String getId() {
@@ -59,12 +59,5 @@ public class Usuario {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
-
-    public String getProfile_image_url() {
-        return profile_image_url;
-    }
-
-    public void setProfile_image_url(String profile_image_url) {
-        this.profile_image_url = profile_image_url;
-    }
+    
 }
