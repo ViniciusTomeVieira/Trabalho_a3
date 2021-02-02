@@ -18,21 +18,25 @@ public class UsuarioGET {
     private WebTarget webTarget;
     private Invocation.Builder invocationBuilder;
     private final String BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAEFSMQEAAAAAaULnquLDV7WSCul%2B4yhXWZz6e2Q%3DpJaVDUFTyvxH3f0BFddvdRDGRhTKKlnWqQzGVcCReDlzsREYf4";
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
     public UsuarioGET() {
         client = ClientBuilder.newClient();
         mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true);
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     }
 
-    public Usuarios getUsuarioByUsername(String username) throws JsonProcessingException {
-        String accessLInk = "https://api.twitter.com/2/users/by/username/"+username;
+    public Usuarios getUsuarioByUsername(String username) throws Exception {
+        String accessLInk = "https://api.twitter.com/2/users/by/username/" + username;
         webTarget = client.target(accessLInk);
+
         invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);
-        String usuarioResponse = invocationBuilder.get().readEntity(String.class);
-        System.out.println(usuarioResponse);
-        Usuarios usuario = mapper.readValue(usuarioResponse,Usuarios.class);
-        return usuario;
+        if (invocationBuilder.get().getStatus() == 200) {
+            String usuarioResponse = invocationBuilder.get().readEntity(String.class);
+            System.out.println(usuarioResponse);
+            return mapper.readValue(usuarioResponse, Usuarios.class);
+        } else {
+            throw  new Exception("usuário iválido");
+        }
     }
 }

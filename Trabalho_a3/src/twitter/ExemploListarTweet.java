@@ -14,8 +14,9 @@ public class ExemploListarTweet {
         UsuarioGET usuarioGET = new UsuarioGET();
 
         Usuarios usu = usuarioGET.getUsuarioByUsername("DolarBipolar");
+
         for(Usuario u: usu.getData()) {
-            Tweets tws = tweetsGET.getTweetByUsuarioID(u.getId(), 50);
+            Tweets tws = tweetsGET.getTweetByUsuarioID(u.getId(), 100);
 
             System.out.println(u.getName());
             for (Tweet t : tws.getData()) {

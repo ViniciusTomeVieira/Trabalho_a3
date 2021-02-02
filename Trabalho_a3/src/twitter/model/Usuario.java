@@ -4,15 +4,19 @@ public class Usuario {
     private String id;
     private String name;
     private String username;
+    private String created_at;
 
     public Usuario() {
     }
 
-    public Usuario( String id, String name, String username) {
+    public Usuario(String id, String name, String username, String created_at) {
         this.id = id;
         this.name = name;
         this.username = username;
+        this.created_at = created_at;
     }
+
+
 
     public String getId() {
         return id;
@@ -38,5 +42,11 @@ public class Usuario {
         this.username = username;
     }
 
+    public String getCreated_at() {
+        return created_at;
+    }
 
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
 }

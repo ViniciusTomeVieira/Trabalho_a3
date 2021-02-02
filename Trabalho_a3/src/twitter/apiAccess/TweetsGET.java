@@ -15,27 +15,23 @@ import javax.ws.rs.core.MediaType;
 public class TweetsGET {
     private Client client;
     private WebTarget webTarget;
-    private Invocation.Builder invocationBuilder;
     private final String BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAEFSMQEAAAAAaULnquLDV7WSCul%2B4yhXWZz6e2Q%3DpJaVDUFTyvxH3f0BFddvdRDGRhTKKlnWqQzGVcCReDlzsREYf4";
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
+
     public TweetsGET() {
         client = ClientBuilder.newClient();
         mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true);
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
     }
 
-    public Tweets getTweetByUsuarioID(String usuarioId, int qntTweets) throws JsonProcessingException {
+    public Tweets getTweetByUsuarioID(String usuarioId, int qntTweets) throws Exception {
 
-        String accessLInk = "https://api.twitter.com/2/users/"+usuarioId+"/tweets?max_results="+qntTweets;
+        String accessLInk = "https://api.twitter.com/2/users/" + usuarioId + "/tweets?max_results=" + qntTweets;
         webTarget = client.target(accessLInk);
-        invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);
-        String tweets = invocationBuilder.get().readEntity(String.class);
-
-        Tweets tweet = mapper.readValue(tweets,Tweets.class);
-        return tweet;
+        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON_TYPE).header(HttpHeaders.AUTHORIZATION, "Bearer " + BEARER_TOKEN);
+        if (invocationBuilder.get().getStatus() == 200) {
+            String tweets = invocationBuilder.get().readEntity(String.class);
+            return mapper.readValue(tweets, Tweets.class);
+        } else throw new Exception("Tweets não encontrados");
     }
-
-
-
-
 }
