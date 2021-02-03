@@ -1,9 +1,7 @@
 package twitter.apiAccess;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import twitter.model.Rules;
 import twitter.model.RulesResponse;
 
@@ -15,7 +13,7 @@ import javax.ws.rs.core.Response;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe resposável pela comunicação com a API do twitter (Rules POST)
  */
 public class RulesPOST {
     private Client client;

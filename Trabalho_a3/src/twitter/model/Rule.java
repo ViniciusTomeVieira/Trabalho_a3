@@ -3,7 +3,7 @@ package twitter.model;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe modelo de Rule
  */
 public class Rule {
     private String value;

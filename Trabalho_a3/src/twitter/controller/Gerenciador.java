@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe gerenciadora do sistema (Controle)
  */
 public class Gerenciador {
     private static Gerenciador instance;

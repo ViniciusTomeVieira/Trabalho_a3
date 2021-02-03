@@ -11,12 +11,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -25,7 +21,7 @@ import twitter.controller.Gerenciador;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe resposável pela tela que mostra a regra cadastrada na conta
  */
 public class TweetsRulesView extends JFrame{
     
@@ -49,7 +45,7 @@ public class TweetsRulesView extends JFrame{
         
         //Configura a view
         setTitle(title);
-        setBounds(200, 200, 1000, 800);
+        setBounds(200, 200, 700, 300);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);

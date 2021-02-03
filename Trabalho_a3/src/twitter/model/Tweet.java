@@ -4,7 +4,7 @@ package twitter.model;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe modelo de tweet
  */
 public final class Tweet {
 

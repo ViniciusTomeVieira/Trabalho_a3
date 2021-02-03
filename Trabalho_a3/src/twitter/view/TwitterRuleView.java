@@ -23,7 +23,7 @@ import twitter.observer.Observer;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe resposável pela tela de POST do sistema
  */
 public class TwitterRuleView extends JFrame implements Observer, ActionListener {
     

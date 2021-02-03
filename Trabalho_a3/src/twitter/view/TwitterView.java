@@ -65,7 +65,7 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
             e.printStackTrace();
         }
     }
-    //Inicia os componentes da tela e os ajusta corretamente
+    //Inicia os componentes da tela e os ajusta corretamente (GET)
     private void initComponents(){
         //JLabels
         jlImage = new JLabel("TwitterJersey AV");
@@ -170,7 +170,12 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbSearch) {
-            gerenciador.buscarTweetByUsername(jtfUser.getText(), Integer.parseInt(jtfAmount.getText()));
+            try{
+                int test = Integer.parseInt(jtfAmount.getText()) / 1;
+                gerenciador.buscarTweetByUsername(jtfUser.getText(), Integer.parseInt(jtfAmount.getText()));
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(rootPane, "Insira uma quantidade válida","Aviso",JOptionPane.WARNING_MESSAGE);
+            }
         }
         if (e.getSource() == jbAddRule) {
                 try {

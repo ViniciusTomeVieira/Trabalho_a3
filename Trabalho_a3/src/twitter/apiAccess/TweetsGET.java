@@ -1,6 +1,5 @@
 package twitter.apiAccess;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import twitter.model.Tweets;
@@ -15,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe resposável pela comunicação com a API do twitter (Tweets GET)
  */
 public class TweetsGET {
     private Client client;

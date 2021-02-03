@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Classe modelo de tweets
  */
 public class Tweets {
     private List<Tweet> data;

@@ -2,7 +2,7 @@ package twitter.observer;
 /**
  * @author Vinícius & Adroan
  * @version 1.0
- * Classe resposável pela tela inicial do sistema
+ * Interface do padrão de projeto Observer
  */
 public interface Observer {
 
