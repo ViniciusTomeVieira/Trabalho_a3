@@ -62,10 +62,11 @@ public class TwitterRuleView extends JFrame implements Observer, ActionListener 
         jlImage = new JLabel("TwitterJersey AV");
         jlValue = new JLabel("Regra: ");
         jlTag= new JLabel("Tag: ");
-        jlValueSample = new JLabel("Ex.: Memes");
-        jlTagSample = new JLabel("Cachorro");
+        jlValueSample = new JLabel("Ex.: Udesc");
+        jlTagSample = new JLabel("Software");
         
-        ImageIcon iconLogo = new ImageIcon("Images/twitter.png");
+        java.net.URL logoOneUrl = getClass().getResource("twitter.png");
+        ImageIcon iconLogo = new ImageIcon(logoOneUrl);
         Image newImage = iconLogo.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         iconLogo.setImage(newImage);
         jlImage.setIcon(iconLogo);

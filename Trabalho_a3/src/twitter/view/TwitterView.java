@@ -75,7 +75,8 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
         jlAmountSample = new JLabel("Entre 5 e 100");
         jlOr = new JLabel("ou");
         
-        ImageIcon iconLogo = new ImageIcon("Images/twitter.png");
+        java.net.URL logoOneUrl = getClass().getResource("twitter.png");
+        ImageIcon iconLogo = new ImageIcon(logoOneUrl);
         Image newImage = iconLogo.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         iconLogo.setImage(newImage);
         jlImage.setIcon(iconLogo);
