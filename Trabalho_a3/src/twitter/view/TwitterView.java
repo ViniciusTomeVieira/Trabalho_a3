@@ -172,7 +172,11 @@ public class TwitterView extends JFrame implements Observer, ActionListener {
         if (e.getSource() == jbSearch) {
             try{
                 int test = Integer.parseInt(jtfAmount.getText()) / 1;
-                gerenciador.buscarTweetByUsername(jtfUser.getText(), Integer.parseInt(jtfAmount.getText()));
+                if(!jtfUser.getText().equals("")){
+                    gerenciador.buscarTweetByUsername(jtfUser.getText(), Integer.parseInt(jtfAmount.getText()));
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "Insira um usuário","Aviso",JOptionPane.WARNING_MESSAGE);
+                }
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(rootPane, "Insira uma quantidade válida","Aviso",JOptionPane.WARNING_MESSAGE);
             }

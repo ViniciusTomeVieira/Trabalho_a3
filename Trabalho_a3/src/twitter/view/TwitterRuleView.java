@@ -154,7 +154,11 @@ public class TwitterRuleView extends JFrame implements Observer, ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jbSend) {
-            gerenciador.criarRule(jtfValue.getText(),jtfTag.getText());
+            if(!jtfValue.getText().equals("") && !jtfTag.getText().equals("")){
+                gerenciador.criarRule(jtfValue.getText(),jtfTag.getText());
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Insira uma regra e uma tag, cuidado para não repetí-las","Aviso",JOptionPane.WARNING_MESSAGE);
+            }          
         }
         if (e.getSource() == jbBack) {
                 try {
